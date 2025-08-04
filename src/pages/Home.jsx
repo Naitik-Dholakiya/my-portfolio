@@ -832,7 +832,7 @@ function Home() {
                   <div className="w-full h-64 sm:h-80 md:h-96 rounded-xl skeleton" />
                 ) : (
                   <motion.img
-                    src="/assets/hero-image.svg"
+                    src="/my-portfolio/assets/hero-image.svg"
                     alt="Hero"
                     className="glass-effect w-full h-auto rounded-xl object-cover"
                     loading="lazy"
@@ -965,7 +965,7 @@ function Home() {
                   transition={{ duration: 0.8, ease: 'easeOut' }}
                 >
                   <img
-                    src="/assets/Hero.jpg"
+                    src="/my-portfolio/assets/Hero.jpg"
                     alt="Your Profile"
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     loading="lazy"
