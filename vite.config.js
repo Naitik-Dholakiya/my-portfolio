@@ -8,6 +8,6 @@ export default defineConfig({
       strict: false,
     }
   },
-  // base: '/my-portfolio/', // ✅ Important!
+  base: '/my-portfolio/', // ✅ Important!
   plugins: [react()],
 })
