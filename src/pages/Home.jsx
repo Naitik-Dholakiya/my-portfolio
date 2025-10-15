@@ -8,6 +8,7 @@ import Tilt from 'react-parallax-tilt';
 import CountUp from 'react-countup';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
+// import resumePDF from "/public/assets/Naitik-Resume.pdf";
 
 function Home() {
   const [activeTab, setActiveTab] = useState('Projects');
@@ -224,22 +225,22 @@ function Home() {
           image: 'https://via.placeholder.com/400x300?text=React+Certification',
           link: '#',
         },
-        {
-          title: 'Node.js Backend Developer',
-          issuer: 'Udemy',
-          date: 'Mar 2023',
-          description: 'Mastered Node.js for building RESTful APIs and microservices.',
-          image: 'https://via.placeholder.com/400x300?text=Node.js+Certification',
-          link: '#',
-        },
-        {
-          title: 'Full-Stack Web Development',
-          issuer: 'FreeCodeCamp',
-          date: 'Aug 2022',
-          description: 'Comprehensive training in MERN stack development.',
-          image: 'https://via.placeholder.com/400x300?text=Full-Stack+Certification',
-          link: '#',
-        },
+        // {
+        //   title: 'Node.js Backend Developer',
+        //   issuer: 'Udemy',
+        //   date: 'Mar 2023',
+        //   description: 'Mastered Node.js for building RESTful APIs and microservices.',
+        //   image: 'https://via.placeholder.com/400x300?text=Node.js+Certification',
+        //   link: '#',
+        // },
+        // {
+        //   title: 'Full-Stack Web Development',
+        //   issuer: 'FreeCodeCamp',
+        //   date: 'Aug 2022',
+        //   description: 'Comprehensive training in MERN stack development.',
+        //   image: 'https://via.placeholder.com/400x300?text=Full-Stack+Certification',
+        //   link: '#',
+        // },
       ].sort((a, b) => a.title.localeCompare(b.title)),
       'Tech Stack': [
         {
@@ -278,9 +279,9 @@ function Home() {
   );
 
   const socials = [
-    { href: 'https://github.com/your-github', icon: <FaGithub className="text-xl sm:text-2xl" />, label: 'GitHub', color: 'hover:text-gray-600 dark:hover:text-gray-200' },
+    { href: 'https://github.com/Naitik-Dholakiya', icon: <FaGithub className="text-xl sm:text-2xl" />, label: 'GitHub', color: 'hover:text-gray-600 dark:hover:text-gray-200' },
     { href: 'https://instagram.com/your-profile', icon: <FaInstagram className="text-xl sm:text-2xl" />, label: 'Instagram', color: 'hover:text-pink-600' },
-    { href: 'https://linkedin.com/in/your-profile', icon: <FaLinkedin className="text-xl sm:text-2xl" />, label: 'LinkedIn', color: 'hover:text-blue-600' },
+    { href: 'https://www.linkedin.com/in/naitik-dholakiya/', icon: <FaLinkedin className="text-xl sm:text-2xl" />, label: 'LinkedIn', color: 'hover:text-blue-600' },
   ].sort((a, b) => a.label.localeCompare(b.label));
 
   const contactIcons = [
@@ -534,7 +535,7 @@ function Home() {
           }
         `}
       </style>
-      <main className="min-h-screen relative overflow-hidden font-sans" style={{ background: 'var(--bg)', color: 'var(--text)', transition: 'var(--transition)', paddingTop: '4rem' }} ref={homeRef}>
+      <main className="min-h-screen relative overflow-hidden font-sans" style={{ background: 'var(--bg)', color: 'var(--text)', transition: 'var(--transition)' }} ref={homeRef}>
         <Particles
           id="tsparticles"
           init={particlesInit}
@@ -895,7 +896,7 @@ function Home() {
 
               <div className="flex flex-wrap gap-3 sm:gap-4 pt-2">
                 <motion.a
-                  href="/path-to-cv.pdf"
+                  href="/my-portfolio/assets/Naitik-Resume.pdf"
                   download
                   className="bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-white px-4 sm:px-6 py-2 rounded-xl font-semibold text-sm sm:text-base flex items-center gap-2 focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
                   role="button"
@@ -904,7 +905,7 @@ function Home() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <FaDownload />
-                  Download CV
+                  Download Resume
                 </motion.a>
 
                 <motion.a
@@ -917,32 +918,6 @@ function Home() {
                 >
                   View Projects
                 </motion.a>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6">
-                {[
-                  { label: 'Certificates', value: 7, desc: 'Skills validated' },
-                  { label: 'Total Projects', value: 13, desc: 'Innovative web solutions' },
-                  { label: 'Years Experience', value: 3, desc: 'Continuous journey' },
-                ]
-                  .sort((a, b) => a.label.localeCompare(b.label))
-                  .map((item) => (
-                    <motion.div
-                      key={item.label}
-                      className="glass-effect p-3 sm:p-4 rounded-xl text-center hover:scale-105 transition-transform duration-300 cursor-pointer"
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => e.key === 'Enter' && e.target.click()}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <div className="text-lg sm:text-xl md:text-2xl font-extrabold">
-                        <CountUp end={item.value} duration={2} />
-                      </div>
-                      <div className="text-sm sm:text-base gradient-text mt-1 sm:mt-2">{item.label}</div>
-                      <p className="text-xs sm:text-sm text-[var(--secondary)] mt-1">{item.desc}</p>
-                    </motion.div>
-                  ))}
               </div>
             </motion.div>
 
@@ -974,6 +949,32 @@ function Home() {
               )}
             </Tilt>
           </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6">
+                {[
+                  { label: 'Certificates', value: 7, desc: 'Skills validated' },
+                  { label: 'Total Projects', value: 13, desc: 'Innovative web solutions' },
+                  { label: 'Years Experience', value: 3, desc: 'Continuous journey' },
+                ]
+                  .sort((a, b) => a.label.localeCompare(b.label))
+                  .map((item) => (
+                    <motion.div
+                      key={item.label}
+                      className="glass-effect p-3 sm:p-4 rounded-xl text-center hover:scale-105 transition-transform duration-300 cursor-pointer"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && e.target.click()}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div className="text-lg sm:text-xl md:text-2xl font-extrabold">
+                        <CountUp end={item.value} duration={2} />
+                      </div>
+                      <div className="text-sm sm:text-base gradient-text mt-1 sm:mt-2">{item.label}</div>
+                      <p className="text-xs sm:text-sm text-[var(--secondary)] mt-1">{item.desc}</p>
+                    </motion.div>
+                  ))}
+              </div>
         </section>
 
         <section id="portfolio" className="min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 relative" ref={portfolioRef}>
