@@ -182,7 +182,7 @@ function Home() {
   };
 
   const [comments, setComments] = useState([
-    { name: 'Ekizr', message: 'Thanks for visiting! Contact me if you need anything', role: 'Admin', date: 'Jun 2, 2025', pinned: true },
+    { name: 'Naitik', message: 'Thanks for visiting! Contact me if you need anything', role: 'Admin', date: 'Oct 28, 2025', pinned: true },
     { name: 'asdas', message: 'sosogosks', date: '2h ago' },
     { name: 'aisgyuasfiug', message: '<a href="#">aoiusdfgalsufkbfjk</a>', date: '1d ago' },
   ]);
@@ -196,66 +196,60 @@ function Home() {
       Projects: [
         {
           title: 'Aritmatika Solver',
-          description: 'Program ini dirancang untuk mempermudah pengguna dalam menyelesaikan soal-soal Aritmatika secara otomatis.',
+          description:
+            'Program ini dirancang untuk mempermudah pengguna dalam menyelesaikan soal-soal Aritmatika secara otomatis.',
           image: 'https://via.placeholder.com/400x300?text=Aritmatika+Solver',
           demoLink: '#',
           tech: ['JavaScript', 'React'],
         },
         {
           title: 'AutoChat-Discord',
-          description: 'AutoChat adalah solusi otomatisasi untuk mengirim pesan ke saluran Discord secara terjadwal.',
+          description:
+            'AutoChat adalah solusi otomatisasi untuk mengirim pesan ke saluran Discord secara terjadwal.',
           image: 'https://via.placeholder.com/400x300?text=AutoChat',
           demoLink: '#',
           tech: ['Node.js', 'JavaScript'],
         },
         {
           title: 'Buku Catatan',
-          description: 'Website untuk membuat, menyimpan, dan mengelola catatan secara efisien dan fleksibel.',
+          description:
+            'Website untuk membuat, menyimpan, dan mengelola catatan secara efisien dan fleksibel.',
           image: 'https://via.placeholder.com/400x300?text=Buku+Catatan',
           demoLink: '#',
           tech: ['Laravel', 'MySQL'],
         },
       ].sort((a, b) => a.title.localeCompare(b.title)),
+
       Certificates: [
         {
           title: 'React Professional Certification',
           issuer: 'Coursera',
           date: 'Jan 2024',
-          description: 'Advanced React and Redux for building scalable web applications.',
+          description:
+            'Advanced React and Redux for building scalable web applications.',
           image: 'https://via.placeholder.com/400x300?text=React+Certification',
           link: '#',
         },
-        // {
-        //   title: 'Node.js Backend Developer',
-        //   issuer: 'Udemy',
-        //   date: 'Mar 2023',
-        //   description: 'Mastered Node.js for building RESTful APIs and microservices.',
-        //   image: 'https://via.placeholder.com/400x300?text=Node.js+Certification',
-        //   link: '#',
-        // },
-        // {
-        //   title: 'Full-Stack Web Development',
-        //   issuer: 'FreeCodeCamp',
-        //   date: 'Aug 2022',
-        //   description: 'Comprehensive training in MERN stack development.',
-        //   image: 'https://via.placeholder.com/400x300?text=Full-Stack+Certification',
-        //   link: '#',
-        // },
+        // Add more certificates here
       ].sort((a, b) => a.title.localeCompare(b.title)),
+
       'Tech Stack': [
         {
           name: 'JavaScript',
-          description: 'Proficient in ES6+ for dynamic and interactive web applications.',
+          description:
+            'Proficient in ES6+ for dynamic and interactive web applications.',
           icon: <SiJavascript className="text-yellow-400 text-2xl sm:text-3xl" />,
         },
         {
           name: 'React',
-          description: 'Expert in building reusable UI components and SPAs with React.',
+          description:
+            'Expert in building reusable UI components and SPAs with React.',
           icon: <FaReact className="text-cyan-500 text-2xl sm:text-3xl" />,
         },
         {
           name: 'Node.js',
-          description: 'Skilled in server-side development with Express and Node.js.',
+          description:
+            'Skilled in server-side development with Express and Node.js.',
           icon: <FaNodeJs className="text-green-500 text-2xl sm:text-3xl" />,
         },
         {
@@ -274,6 +268,29 @@ function Home() {
           icon: <SiTailwindcss className="text-sky-500 text-2xl sm:text-3xl" />,
         },
       ].sort((a, b) => a.name.localeCompare(b.name)),
+
+      Experience: [
+        {
+          company: 'Parthvitech Innovatives LLP',
+          role: 'Web Development Intern',
+          duration: 'June 2024 – August 2024',
+          responsibilities: [
+            'Worked on real-world web projects using Laravel, Bootstrap, and jQuery.',
+            'Collaborated with the team to design responsive and efficient interfaces.',
+            'Gained practical experience in Git, database design, and professional workflows.',
+          ],
+        },
+        {
+          company: 'Freelance Projects',
+          role: 'Full-Stack Developer',
+          duration: '2023 – Present',
+          responsibilities: [
+            'Developed custom web applications for small businesses.',
+            'Built secure backend systems and optimized UI for performance.',
+            'Managed complete development lifecycle from design to deployment.',
+          ],
+        },
+      ],
     }),
     []
   );
@@ -288,8 +305,6 @@ function Home() {
     { label: 'GitHub', icon: '💻', color: 'bg-gray-600' },
     { label: 'Instagram', icon: '📸', color: 'bg-pink-600' },
     { label: 'LinkedIn', icon: '🔗', color: 'bg-blue-600' },
-    { label: 'TikTok', icon: '🎵', color: 'bg-black' },
-    { label: 'YouTube', icon: '▶️', color: 'bg-red-600' },
   ].sort((a, b) => a.label.localeCompare(b.label));
 
   const navLinks = [
@@ -951,72 +966,100 @@ function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6">
-                {[
-                  { label: 'Certificates', value: 7, desc: 'Skills validated' },
-                  { label: 'Total Projects', value: 13, desc: 'Innovative web solutions' },
-                  { label: 'Years Experience', value: 3, desc: 'Continuous journey' },
-                ]
-                  .sort((a, b) => a.label.localeCompare(b.label))
-                  .map((item) => (
-                    <motion.div
-                      key={item.label}
-                      className="glass-effect p-3 sm:p-4 rounded-xl text-center hover:scale-105 transition-transform duration-300 cursor-pointer"
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => e.key === 'Enter' && e.target.click()}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <div className="text-lg sm:text-xl md:text-2xl font-extrabold">
-                        <CountUp end={item.value} duration={2} />
-                      </div>
-                      <div className="text-sm sm:text-base gradient-text mt-1 sm:mt-2">{item.label}</div>
-                      <p className="text-xs sm:text-sm text-[var(--secondary)] mt-1">{item.desc}</p>
-                    </motion.div>
-                  ))}
-              </div>
+            {[
+              { label: 'Certificates', value: 7, desc: 'Skills validated' },
+              { label: 'Total Projects', value: 13, desc: 'Innovative web solutions' },
+              { label: 'Years Experience', value: 3, desc: 'Continuous journey' },
+            ]
+              .sort((a, b) => a.label.localeCompare(b.label))
+              .map((item) => (
+                <motion.div
+                  key={item.label}
+                  className="glass-effect p-3 sm:p-4 rounded-xl text-center hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && e.target.click()}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="text-lg sm:text-xl md:text-2xl font-extrabold">
+                    <CountUp end={item.value} duration={2} />
+                  </div>
+                  <div className="text-sm sm:text-base gradient-text mt-1 sm:mt-2">{item.label}</div>
+                  <p className="text-xs sm:text-sm text-[var(--secondary)] mt-1">{item.desc}</p>
+                </motion.div>
+              ))}
+          </div>
         </section>
 
-        <section id="portfolio" className="min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 relative" ref={portfolioRef}>
+        <section
+          id="portfolio"
+          className="min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 relative"
+          ref={portfolioRef}
+        >
+          {/* Gradient Background Scroll Effect */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg)]/10"
             style={{ y: scrollYProgress }}
-            transition={{ type: 'tween', duration: 0.5 }}
+            transition={{ type: "tween", duration: 0.5 }}
           />
+
+          {/* Section Title */}
           <motion.div
             className="text-center mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h2 className="gradient-text text-xl sm:text-2xl md:text-3xl font-extrabold text-shadow">Portfolio Showcase</h2>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base md:text-lg">Explore my journey through innovative projects, certifications, and technical expertise.</p>
+            <h2 className="gradient-text text-xl sm:text-2xl md:text-3xl font-extrabold text-shadow">
+              Portfolio Showcase
+            </h2>
+            <p className="mt-1 sm:mt-2 text-sm sm:text-base md:text-lg">
+              Explore my journey through innovative projects, certifications, technical
+              expertise, and professional experiences.
+            </p>
           </motion.div>
 
-          <div className="flex justify-center gap-2 sm:gap-3 flex-wrap mb-6 sm:mb-8">
-            {Object.keys(portfolioData)
-              .sort((a, b) => a.localeCompare(b))
-              .map((tab) => (
-                <motion.button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`glass-effect px-3 sm:px-5 py-1 sm:py-2 rounded-xl font-medium text-sm sm:text-base ${
-                    activeTab === tab
-                      ? 'bg-gradient-to-tr from-[var(--accent)] to-blue-600 text-white'
-                      : 'hover:bg-[var(--glass)]/80'
-                  } focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2`}
-                  role="tab"
-                  aria-selected={activeTab === tab}
-                  aria-controls={`panel-${tab}`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {tab}
-                </motion.button>
-              ))}
+          {/* Tabs with Animated Highlight */}
+          <div className="relative flex justify-center flex-wrap gap-3 sm:gap-4 mb-8">
+            <div className="flex gap-3 sm:gap-4 relative">
+              {Object.keys(portfolioData)
+                .sort((a, b) => a.localeCompare(b))
+                .map((tab) => (
+                  <motion.button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`relative px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium text-sm sm:text-base z-10 transition-colors duration-300 ${activeTab === tab
+                        ? "text-white"
+                        : "text-gray-300 hover:text-[var(--accent)]"
+                      }`}
+                    role="tab"
+                    aria-selected={activeTab === tab}
+                    aria-controls={`panel-${tab}`}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {tab}
+
+                    {/* Animated Highlight */}
+                    {activeTab === tab && (
+                      <motion.div
+                        layoutId="activeTabHighlight"
+                        className="absolute inset-0 rounded-xl bg-gradient-to-tr from-[var(--accent)] to-blue-600 z-[-1]"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </motion.button>
+                ))}
+            </div>
           </div>
 
+          {/* Cards Section */}
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
             initial={{ opacity: 0 }}
@@ -1026,25 +1069,26 @@ function Home() {
             {portfolioData[activeTab].map((item) => (
               <motion.div
                 key={item.title || item.name}
-                className="glass-effect p-3 sm:p-4 rounded-2xl hover:shadow-[var(--shadow)] transition duration-300 cursor-pointer"
+                className="glass-effect p-4 rounded-2xl hover:shadow-[var(--shadow)] transition duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && e.target.click()}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                {activeTab === 'Tech Stack' ? (
+                {/* Tech Stack Tab */}
+                {activeTab === "Tech Stack" && (
                   <>
-                    <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                    <div className="flex items-center gap-3 mb-3">
                       {item.icon}
-                      <h3 className="text-base sm:text-lg font-semibold">{item.name}</h3>
+                      <h3 className="text-lg font-semibold">{item.name}</h3>
                     </div>
-                    <p className="text-sm sm:text-base mt-1 sm:mt-2 line-clamp-3">{item.description}</p>
+                    <p className="text-sm mt-2 line-clamp-3">{item.description}</p>
                   </>
-                ) : (
+                )}
+
+                {/* Projects Tab */}
+                {activeTab === "Projects" && (
                   <>
-                    <div className="overflow-hidden rounded-xl mb-3 sm:mb-4 h-40 sm:h-48 bg-[var(--bg)]/20">
+                    <div className="overflow-hidden rounded-xl mb-3 h-48 bg-[var(--bg)]/20">
                       <motion.img
                         src={item.image}
                         alt={item.title}
@@ -1055,48 +1099,84 @@ function Home() {
                         transition={{ duration: 0.3 }}
                       />
                     </div>
-                    <h3 className="text-base sm:text-lg font-semibold">{item.title}</h3>
-                    <p className="text-sm sm:text-base mt-1 sm:mt-2 line-clamp-3">{item.description}</p>
-                    {activeTab === 'Projects' && (
-                      <div className="flex flex-wrap gap-1 sm:gap-2 mt-2">
-                        {item.tech.map((tech) => (
-                          <span
-                            key={tech}
-                            className="glass-effect px-2 py-1 text-xs sm:text-sm rounded-full"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {activeTab === 'Certificates' && (
-                      <p className="text-xs sm:text-sm text-[var(--secondary)] mt-1">Issued by {item.issuer} on {item.date}</p>
-                    )}
-                    <div className="flex justify-between items-center mt-3 sm:mt-4">
-                      <motion.a
-                        href={item.demoLink || item.link}
-                        className="text-xs sm:text-sm text-blue-400 hover:underline flex items-center gap-1 focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
-                        aria-label={`View ${activeTab === 'Certificates' ? 'certificate' : 'live demo'} of ${item.title}`}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {activeTab === 'Certificates' ? 'View Certificate' : 'Live Demo'} <ExternalLink size={12} sm:size={14} />
-                      </motion.a>
-                      <motion.button
-                        className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm hover:gradient-text focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
-                        aria-label={`View details of ${item.title}`}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Details <ArrowRight size={14} sm:size={16} />
-                      </motion.button>
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <p className="text-sm mt-2 line-clamp-3">{item.description}</p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {item.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="glass-effect px-2 py-1 text-xs rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </>
+                )}
+
+                {/* Certificates Tab */}
+                {activeTab === "Certificates" && (
+                  <>
+                    <div className="overflow-hidden rounded-xl mb-3 h-48 bg-[var(--bg)]/20">
+                      <motion.img
+                        src={item.image}
+                        alt={item.title}
+                        className="object-cover w-full h-full"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <p className="text-sm mt-2">{item.description}</p>
+                    <p className="text-xs text-[var(--secondary)] mt-1">
+                      Issued by {item.issuer} on {item.date}
+                    </p>
+                  </>
+                )}
+
+                {/* Experience Tab */}
+                {activeTab === "Experience" && (
+                  <>
+                    <h3 className="text-lg font-semibold text-[var(--accent)] mb-1">
+                      {item.company}
+                    </h3>
+                    <p className="text-sm font-medium">{item.role}</p>
+                    <p className="text-xs text-gray-400">{item.duration}</p>
+                    <ul className="text-sm mt-2 list-disc list-inside space-y-1">
+                      {item.responsibilities.map((task, index) => (
+                        <li key={index}>{task}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
+                {/* Common Footer Buttons */}
+                {activeTab !== "Tech Stack" && (
+                  <div className="flex justify-between items-center mt-4">
+                    {item.demoLink || item.link ? (
+                      <motion.a
+                        href={item.demoLink || item.link}
+                        className="text-sm text-blue-400 hover:underline flex items-center gap-1"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {activeTab === "Certificates" ? "View Certificate" : "Live Demo"}{" "}
+                        <ExternalLink size={14} />
+                      </motion.a>
+                    ) : (
+                      <span></span>
+                    )}
+                    <motion.button
+                      className="flex items-center gap-1 text-sm hover:gradient-text"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Details <ArrowRight size={16} />
+                    </motion.button>
+                  </div>
                 )}
               </motion.div>
             ))}
           </motion.div>
         </section>
+
 
         <section id="contact" className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 min-h-screen relative" ref={contactRef}>
           <motion.div
@@ -1133,9 +1213,8 @@ function Home() {
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${
-                      formErrors.name ? 'border-red-500' : ''
-                    }`}
+                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${formErrors.name ? 'border-red-500' : ''
+                      }`}
                     aria-label="Your Name"
                     aria-invalid={!!formErrors.name}
                   />
@@ -1147,9 +1226,8 @@ function Home() {
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${
-                      formErrors.email ? 'border-red-500' : ''
-                    }`}
+                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${formErrors.email ? 'border-red-500' : ''
+                      }`}
                     aria-label="Your Email"
                     aria-invalid={!!formErrors.email}
                   />
@@ -1161,9 +1239,8 @@ function Home() {
                     placeholder="Your Message"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${
-                      formErrors.message ? 'border-red-500' : ''
-                    }`}
+                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${formErrors.message ? 'border-red-500' : ''
+                      }`}
                     aria-label="Your Message"
                     aria-invalid={!!formErrors.message}
                   />
@@ -1171,9 +1248,8 @@ function Home() {
                 </div>
                 <motion.button
                   type="submit"
-                  className={`bg-gradient-to-r from-[var(--accent)] to-blue-600 text-white font-medium py-2 rounded-lg text-sm sm:text-base ${
-                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                  } focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2`}
+                  className={`bg-gradient-to-r from-[var(--accent)] to-blue-600 text-white font-medium py-2 rounded-lg text-sm sm:text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                    } focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2`}
                   disabled={isSubmitting}
                   aria-label="Send Message"
                   whileHover={{ scale: 1.05 }}
@@ -1222,9 +1298,8 @@ function Home() {
                     placeholder="Enter your name"
                     value={commentData.name}
                     onChange={(e) => setCommentData({ ...commentData, name: e.target.value })}
-                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${
-                      formErrors.name ? 'border-red-500' : ''
-                    }`}
+                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${formErrors.name ? 'border-red-500' : ''
+                      }`}
                     aria-label="Your Name for Comment"
                     aria-invalid={!!formErrors.name}
                   />
@@ -1235,9 +1310,8 @@ function Home() {
                     placeholder="Write your message here..."
                     value={commentData.message}
                     onChange={(e) => setCommentData({ ...commentData, message: e.target.value })}
-                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${
-                      formErrors.message ? 'border-red-500' : ''
-                    }`}
+                    className={`glass-effect rounded-lg px-3 sm:px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 ${formErrors.message ? 'border-red-500' : ''
+                      }`}
                     rows={3}
                     aria-label="Your Comment"
                     aria-invalid={!!formErrors.message}
@@ -1268,9 +1342,8 @@ function Home() {
                 )}
                 <motion.button
                   type="submit"
-                  className={`bg-gradient-to-r from-[var(--accent)] to-blue-600 text-white font-medium py-2 rounded-lg text-sm sm:text-base ${
-                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                  } focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2`}
+                  className={`bg-gradient-to-r from-[var(--accent)] to-blue-600 text-white font-medium py-2 rounded-lg text-sm sm:text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                    } focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2`}
                   disabled={isSubmitting}
                   aria-label="Post Comment"
                   whileHover={{ scale: 1.05 }}
