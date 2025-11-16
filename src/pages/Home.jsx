@@ -1,14 +1,22 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, AnimatePresence } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedin, FaInstagram, FaReact, FaNodeJs, FaLaravel, FaDownload, FaBars, FaTimes, FaArrowUp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaReact, FaNodeJs, FaLaravel, FaDownload, FaBars, FaTimes, FaArrowUp} from 'react-icons/fa';
+import { SiMongodb } from "react-icons/si";
 import { SiJavascript, SiTailwindcss, SiMysql } from 'react-icons/si';
-import { ChevronDown, ExternalLink, ArrowRight, MessageCircle, UploadCloud, Sun, Moon } from 'lucide-react';
+import { ChevronDown, ExternalLink, ArrowRight, MessageCircle, UploadCloud, Sun, Moon, Cloud } from 'lucide-react';
 import Tilt from 'react-parallax-tilt';
 import CountUp from 'react-countup';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
-// import resumePDF from "/public/assets/Naitik-Resume.pdf";
+// Imports of Certificate images are added here
+import gitGithub from '../assets/certificates/git_github.png';
+import promptEngineering from '../assets/certificates/prompt_engineering.png';
+import MongoDB from '../assets/certificates/mongodb_basics.png';
+import CloudComputing from '../assets/certificates/cloud_computing.png';
+import MachineLearning from '../assets/certificates/machine_learning.png';
+// Imports of Project images are added here
+import Portfolio from '../assets/projects/portfolio_website.png';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('Projects');
@@ -195,41 +203,62 @@ function Home() {
     () => ({
       Projects: [
         {
-          title: 'Aritmatika Solver',
+          title: 'Portfolio Website',
           description:
-            'Program ini dirancang untuk mempermudah pengguna dalam menyelesaikan soal-soal Aritmatika secara otomatis.',
-          image: 'https://via.placeholder.com/400x300?text=Aritmatika+Solver',
+            'A personal portfolio website to showcase my projects and skills, built with React and Tailwind CSS.',
+          image: Portfolio,
           demoLink: '#',
-          tech: ['JavaScript', 'React'],
+          tech: ['React', 'Tailwind CSS'],
         },
-        {
-          title: 'AutoChat-Discord',
-          description:
-            'AutoChat adalah solusi otomatisasi untuk mengirim pesan ke saluran Discord secara terjadwal.',
-          image: 'https://via.placeholder.com/400x300?text=AutoChat',
-          demoLink: '#',
-          tech: ['Node.js', 'JavaScript'],
-        },
-        {
-          title: 'Buku Catatan',
-          description:
-            'Website untuk membuat, menyimpan, dan mengelola catatan secara efisien dan fleksibel.',
-          image: 'https://via.placeholder.com/400x300?text=Buku+Catatan',
-          demoLink: '#',
-          tech: ['Laravel', 'MySQL'],
-        },
+        // Add more projects here
       ].sort((a, b) => a.title.localeCompare(b.title)),
 
       Certificates: [
         {
-          title: 'React Professional Certification',
+          title: 'Getting Started with Git and GitHub',
           issuer: 'Coursera',
-          date: 'Jan 2024',
+          date: '16 October 2025',
           description:
-            'Advanced React and Redux for building scalable web applications.',
-          image: 'https://via.placeholder.com/400x300?text=React+Certification',
-          link: '#',
+            'Learned the fundamentals of version control using Git and GitHub.',
+          image: gitGithub,
+          link: 'https://1drv.ms/b/c/87d5329971bd92f1/Eful4Vvai-FKjghVsabi2J4Ba0BCy7wq352mcXIpNZ8oSw?e=o9Fao4',
         },
+        {
+          title: 'Prompt Engineering for ChatGPT',
+          issuer: 'Coursera',
+          date: '1 October 2025',
+          description:
+            'Mastered the art of crafting effective prompts for AI language models like ChatGPT.',
+          image: promptEngineering,
+          link: '',
+        },
+        {
+          title: 'MongoDB Basics',
+          issuer: 'Coursera',
+          date: '7 November 2025',
+          description:
+            'Acquired foundational knowledge of MongoDB, a leading NoSQL database.',
+          image: MongoDB,
+          link: '',
+        },
+        {
+          title: 'Introduction to Cloud Computing Semester 1',
+          issuer: 'AWS Academy',
+          date: '30 October 2023',
+          description:
+            'Gained an understanding of cloud computing concepts and AWS services.',
+          image: CloudComputing,
+          link: '',
+        },
+        {
+          title: 'Machine Learning Foundations',
+          issuer: 'AWS Academy',
+          date: '14 April 2024',
+          description:
+            'Learned the basics of machine learning and its applications using AWS tools.',
+          image: MachineLearning,
+          link: '',
+        }
         // Add more certificates here
       ].sort((a, b) => a.title.localeCompare(b.title)),
 
@@ -263,6 +292,11 @@ function Home() {
           icon: <SiMysql className="text-blue-600 text-2xl sm:text-3xl" />,
         },
         {
+          name: 'MongoDB',
+          description: 'Skilled in working with NoSQL databases, document modeling, and efficient data queries.',
+          icon: <SiMongodb className="text-green-600 text-2xl sm:text-3xl" />,
+        },
+        {
           name: 'Tailwind CSS',
           description: 'Expert in rapid UI development with utility-first CSS.',
           icon: <SiTailwindcss className="text-sky-500 text-2xl sm:text-3xl" />,
@@ -272,10 +306,10 @@ function Home() {
       Experience: [
         {
           company: 'Parthvitech Innovatives LLP',
-          role: 'Web Development Intern',
-          duration: 'June 2024 – August 2024',
+          role: 'Software Development Intern(Laravel)',
+          duration: 'May 2024 – April 2025',
           responsibilities: [
-            'Worked on real-world web projects using Laravel, Bootstrap, and jQuery.',
+            'Worked on real-world Generic ERP System using Laravel and React.',
             'Collaborated with the team to design responsive and efficient interfaces.',
             'Gained practical experience in Git, database design, and professional workflows.',
           ],
@@ -283,11 +317,11 @@ function Home() {
         {
           company: 'Freelance Projects',
           role: 'Full-Stack Developer',
-          duration: '2023 – Present',
+          duration: 'Jan 2024 – April 2024',
           responsibilities: [
-            'Developed custom web applications for small businesses.',
-            'Built secure backend systems and optimized UI for performance.',
-            'Managed complete development lifecycle from design to deployment.',
+            'Worked on real-world web projects using Laravel, Bootstrap, and jQuery.',
+            'Collaborated with the team to design responsive and efficient interfaces.',
+            'Gained practical experience in Git, database design, and professional workflows.',
           ],
         },
       ],
@@ -967,9 +1001,9 @@ function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6">
             {[
-              { label: 'Certificates', value: 7, desc: 'Skills validated' },
-              { label: 'Total Projects', value: 13, desc: 'Innovative web solutions' },
-              { label: 'Years Experience', value: 3, desc: 'Continuous journey' },
+              { label: 'Certificates', value: 5, desc: 'Skills validated' },
+              { label: 'Total Projects', value: 3, desc: 'Innovative web solutions' },
+              { label: 'Years Experience', value: 1, desc: 'Continuous journey' },
             ]
               .sort((a, b) => a.label.localeCompare(b.label))
               .map((item) => (
@@ -1031,8 +1065,8 @@ function Home() {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`relative px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium text-sm sm:text-base z-10 transition-colors duration-300 ${activeTab === tab
-                        ? "text-white"
-                        : "text-gray-300 hover:text-[var(--accent)]"
+                      ? "text-white"
+                      : "text-gray-300 hover:text-[var(--accent)]"
                       }`}
                     role="tab"
                     aria-selected={activeTab === tab}
@@ -1117,11 +1151,11 @@ function Home() {
                 {/* Certificates Tab */}
                 {activeTab === "Certificates" && (
                   <>
-                    <div className="overflow-hidden rounded-xl mb-3 h-48 bg-[var(--bg)]/20">
+                    <div className="overflow-hidden rounded-xl mb-3 h-72 sm:h-72 bg-[var(--bg)]/20">
                       <motion.img
                         src={item.image}
                         alt={item.title}
-                        className="object-cover w-full h-full"
+                        className="object-cover w-full h-auto"
                         loading="lazy"
                       />
                     </div>
