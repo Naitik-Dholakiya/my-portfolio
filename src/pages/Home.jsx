@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, AnimatePresence } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedin, FaInstagram, FaReact, FaNodeJs, FaLaravel, FaDownload, FaBars, FaTimes, FaArrowUp} from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaReact, FaNodeJs, FaLaravel, FaDownload, FaBars, FaTimes, FaArrowUp } from 'react-icons/fa';
 import { SiMongodb } from "react-icons/si";
 import { SiJavascript, SiTailwindcss, SiMysql } from 'react-icons/si';
 import { ChevronDown, ExternalLink, ArrowRight, MessageCircle, UploadCloud, Sun, Moon, Cloud } from 'lucide-react';
@@ -21,7 +21,7 @@ import Portfolio from '../assets/projects/portfolio_website.png';
 function Home() {
   const [activeTab, setActiveTab] = useState('Projects');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [commentData, setCommentData] = useState({ name: '', message: '', photo: null });
+  const [commentData, setCommentData] = useState({ name: '', message: '' });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [notification, setNotification] = useState(null);
@@ -30,10 +30,12 @@ function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const API_BASE = "https://naitik.great-site.net/myportfolio/api";
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const portfolioRef = useRef(null);
   const contactRef = useRef(null);
+  const [comments, setComments] = useState([]);
 
   const { scrollYProgress } = useScroll();
 
@@ -57,6 +59,10 @@ function Home() {
       particleColor: '#6d28d9',
     },
   };
+
+  useEffect(() => {
+    loadComments();
+  }, []);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -131,69 +137,186 @@ function Home() {
     return errors;
   };
 
+  // const handleContactSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const errors = validateForm(formData);
+  //   if (Object.keys(errors).length === 0) {
+  //     setIsSubmitting(true);
+  //     try {
+  //       await new Promise((resolve) => setTimeout(resolve, 1000));
+  //       setNotification({ type: 'success', message: 'Message sent successfully!' });
+  //       setFormData({ name: '', email: '', message: '' });
+  //       setFormErrors({});
+  //     } catch {
+  //       setNotification({ type: 'error', message: 'Failed to send message. Try again.' });
+  //     } finally {
+  //       setIsSubmitting(false);
+  //       setTimeout(() => setNotification(null), 3000);
+  //     }
+  //   } else {
+  //     setFormErrors(errors);
+  //   }
+  // };
+
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-    const errors = validateForm(formData);
-    if (Object.keys(errors).length === 0) {
-      setIsSubmitting(true);
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setNotification({ type: 'success', message: 'Message sent successfully!' });
-        setFormData({ name: '', email: '', message: '' });
-        setFormErrors({});
-      } catch {
-        setNotification({ type: 'error', message: 'Failed to send message. Try again.' });
-      } finally {
-        setIsSubmitting(false);
-        setTimeout(() => setNotification(null), 3000);
-      }
-    } else {
+    setIsSubmitting(true);
+
+    setFormErrors({});
+
+    // Simple validation
+    let errors = {};
+    if (!formData.name.trim()) errors.name = "Name is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
+    if (!formData.message.trim()) errors.message = "Message is required";
+
+    if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
+      setIsSubmitting(false);
+      return;
     }
+
+    try {
+      const res = await fetch(`${API_BASE}/contact/store.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.status === "success") {
+        alert("Message sent successfully!");
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        alert("Error: " + data.message);
+      }
+    } catch (error) {
+      alert("Network error occurred.");
+    }
+
+    setIsSubmitting(false);
   };
+
+  // const handleCommentSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const errors = validateForm(commentData, true);
+  //   if (Object.keys(errors).length === 0) {
+  //     setIsSubmitting(true);
+  //     try {
+  //       await new Promise((resolve) => setTimeout(resolve, 1000));
+  //       setComments([
+  //         { name: commentData.name, message: commentData.message, date: 'Just now' },
+  //         ...comments,
+  //       ]);
+  //       setNotification({ type: 'success', message: 'Comment posted!' });
+  //       setCommentData({ name: '', message: '' });
+  //       setFormErrors({});
+  //     } catch {
+  //       setNotification({ type: 'error', message: 'Failed to post comment.' });
+  //     } finally {
+  //       setIsSubmitting(false);
+  //       setTimeout(() => setNotification(null), 3000);
+  //     }
+  //   } else {
+  //     setFormErrors(errors);
+  //   }
+  // };
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    const errors = validateForm(commentData, true);
-    if (Object.keys(errors).length === 0) {
-      setIsSubmitting(true);
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setComments([
-          { name: commentData.name, message: commentData.message, date: 'Just now', photo: commentData.photo },
-          ...comments,
-        ]);
-        setNotification({ type: 'success', message: 'Comment posted!' });
-        setCommentData({ name: '', message: '', photo: null });
-        setFormErrors({});
-      } catch {
-        setNotification({ type: 'error', message: 'Failed to post comment.' });
-      } finally {
-        setIsSubmitting(false);
-        setTimeout(() => setNotification(null), 3000);
-      }
-    } else {
+    setIsSubmitting(true);
+
+    let errors = {};
+    if (!commentData.name.trim()) errors.name = "Name is required";
+    if (!commentData.message.trim()) errors.message = "Message is required";
+
+    if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/comments/store.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(commentData),
+      });
+
+      const data = await res.json();
+
+      if (data.status === "success") {
+        // Reload comments instantly
+        loadComments();
+
+        // Reset comment box
+        setCommentData({
+          name: "",
+          message: "",
+        });
+      } else {
+        alert("Error posting comment");
+      }
+    } catch (error) {
+      alert("Network error occurred.");
+    }
+
+    setIsSubmitting(false);
+  };
+
+  // const handlePhotoUpload = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file && file.size <= 5 * 1024 * 1024) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => setCommentData((prev) => ({ ...prev, photo: reader.result }));
+  //     reader.readAsDataURL(file);
+  //     setFormErrors((prev) => ({ ...prev, photo: undefined }));
+  //   } else {
+  //     setFormErrors((prev) => ({ ...prev, photo: 'File size exceeds 5MB' }));
+  //   }
+  // };
+
+  const loadComments = async () => {
+    const defaultAdminComment = {
+      name: "Naitik",
+      message: "Thanks for visiting! Contact me if you need anything",
+      role: "Admin",
+      date: "Oct 28, 2025",
+      pinned: true
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/comments/get.php`);
+      const data = await res.json();
+
+      if (data.status === "success") {
+        const dbComments = data.comments || [];
+
+        // Insert admin pinned comment at the top ALWAYS
+        const finalComments = [defaultAdminComment, ...dbComments];
+
+        setComments(finalComments);
+      }
+    } catch (error) {
+      console.error("Error loading comments");
+
+      // Even if API fails, show admin comment
+      setComments([defaultAdminComment]);
     }
   };
 
-  const handlePhotoUpload = (e) => {
-    const file = e.target.files[0];
-    if (file && file.size <= 5 * 1024 * 1024) {
-      const reader = new FileReader();
-      reader.onload = () => setCommentData((prev) => ({ ...prev, photo: reader.result }));
-      reader.readAsDataURL(file);
-      setFormErrors((prev) => ({ ...prev, photo: undefined }));
-    } else {
-      setFormErrors((prev) => ({ ...prev, photo: 'File size exceeds 5MB' }));
-    }
-  };
-
-  const [comments, setComments] = useState([
-    { name: 'Naitik', message: 'Thanks for visiting! Contact me if you need anything', role: 'Admin', date: 'Oct 28, 2025', pinned: true },
-    { name: 'asdas', message: 'sosogosks', date: '2h ago' },
-    { name: 'aisgyuasfiug', message: '<a href="#">aoiusdfgalsufkbfjk</a>', date: '1d ago' },
-  ]);
+  // const [comments, setComments] = useState([
+  //   { name: 'Naitik', message: 'Thanks for visiting! Contact me if you need anything', role: 'Admin', date: 'Oct 28, 2025', pinned: true },
+  //   { name: 'asdas', message: 'sosogosks', date: '2h ago' },
+  //   { name: 'aisgyuasfiug', message: '<a href="#">aoiusdfgalsufkbfjk</a>', date: '1d ago' },
+  // ]);
 
   const particlesInit = async (main) => {
     await loadFull(main);
@@ -1211,7 +1334,6 @@ function Home() {
           </motion.div>
         </section>
 
-
         <section id="contact" className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 min-h-screen relative" ref={contactRef}>
           <motion.div
             className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg)]/10"
@@ -1352,7 +1474,7 @@ function Home() {
                   />
                   {formErrors.message && <p className="text-red-600 text-xs sm:text-sm mt-1">{formErrors.message}</p>}
                 </div>
-                <div
+                {/* <div
                   className="glass-effect rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm flex items-center cursor-pointer relative focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
                   role="button"
                   tabIndex={0}
@@ -1367,13 +1489,13 @@ function Home() {
                   />
                   <UploadCloud className="inline-block mr-2" size={16} sm:size={18} />
                   {commentData.photo ? 'Photo Selected' : 'Choose Profile Photo'} <span className="ml-2 text-xs text-[var(--secondary)]">(Max file size: 5MB)</span>
-                </div>
-                {formErrors.photo && <p className="text-red-600 text-xs sm:text-sm mt-1">{formErrors.photo}</p>}
-                {commentData.photo && (
+                </div> */}
+                {/* {formErrors.photo && <p className="text-red-600 text-xs sm:text-sm mt-1">{formErrors.photo}</p>} */}
+                {/* {commentData.photo && (
                   <div className="relative w-12 sm:w-16 h-12 sm:h-16 rounded-full overflow-hidden">
                     <img src={commentData.photo} alt="Preview" className="w-full h-full object-cover" loading="lazy" />
                   </div>
-                )}
+                )} */}
                 <motion.button
                   type="submit"
                   className={`bg-gradient-to-r from-[var(--accent)] to-blue-600 text-white font-medium py-2 rounded-lg text-sm sm:text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
@@ -1398,9 +1520,9 @@ function Home() {
                   >
                     <div className="flex justify-between items-center mb-1">
                       <div className="flex items-center gap-2">
-                        {comment.photo && (
+                        {/* {comment.photo && (
                           <img src={comment.photo} alt={`${comment.name}'s photo`} className="w-6 sm:w-8 h-6 sm:h-8 rounded-full object-cover" loading="lazy" />
-                        )}
+                        )} */}
                         <div className="font-semibold">
                           {comment.name}
                           {comment.role && (
