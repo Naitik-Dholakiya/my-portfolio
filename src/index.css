@@ -1,12 +1,14 @@
 @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-   @keyframes textShimmer {
-     0% { background-position: 0% 50%; }
-     100% { background-position: 200% 50%; }
-   }
-   .animate-text-shimmer {
-     background-size: 200% 100%;
-     animation: textShimmer 4s linear infinite;
-   }
+@layer base {
+  html {
+    @apply scroll-smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  body {
+    @apply min-w-[320px] bg-slate-50 font-sans text-slate-900 antialiased dark:bg-ink-950 dark:text-slate-50;
+  }
+}
