@@ -1,4 +1,4 @@
-import { createElement, useEffect, useState } from 'react';
+import { createElement, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowDown,
@@ -7,10 +7,9 @@ import {
   ArrowUpRight,
   Download,
   Layers3,
+  LockKeyhole,
   Menu,
-  Moon,
   Sparkles,
-  Sun,
   X,
 } from 'lucide-react';
 import {
@@ -31,6 +30,11 @@ import promptEngineering from '../assets/certificates/prompt_engineering.png';
 import mongoDbBasics from '../assets/certificates/mongodb_basics.png';
 import cloudComputing from '../assets/certificates/cloud_computing.png';
 import machineLearning from '../assets/certificates/machine_learning.png';
+import billGeneratorImage from '../assets/projects/bill_generator.png';
+import krivayaClothingImage from '../assets/projects/krivaya_clothing.png';
+import portfolioImage from '../assets/projects/portfolio_website.png';
+import resumeBuilderImage from '../assets/projects/resume-builder.png';
+import ThemeToggle from '../components/ThemeToggle.jsx';
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 const MotionDiv = motion.div;
@@ -72,7 +76,7 @@ const projects = [
   {
     name: 'bill-generator',
     title: 'Bill Generator & Inventory',
-    imagePath: 'assets/projects/bill-generator.png',
+    image: billGeneratorImage,
     description:
       'A Laravel billing and inventory system for managing customers, suppliers, products, invoices, stock, and sales insights.',
     tags: ['Laravel', 'PHP', 'MySQL', 'PDF Export'],
@@ -82,7 +86,6 @@ const projects = [
   {
     name: 'mern-ecommerce',
     title: 'MERN E-Commerce',
-    imagePath: 'assets/projects/mern-ecommerce.png',
     description:
       'A full-stack shop with product browsing, a dynamic cart, JWT authentication, and admin product and order management.',
     tags: ['MongoDB', 'Express', 'React', 'Node.js'],
@@ -92,7 +95,6 @@ const projects = [
   {
     name: 'Face-Recogination',
     title: 'Face Recognition System',
-    imagePath: 'assets/projects/face-recognition.png',
     description:
       'A computer-vision project with dedicated face capture, model training, and recognition workflows.',
     tags: ['Python', 'OpenCV', 'Computer Vision'],
@@ -102,7 +104,7 @@ const projects = [
   {
     name: 'resume-builder',
     title: 'Resume Builder',
-    imagePath: 'assets/projects/resume-builder.png',
+    image: resumeBuilderImage,
     description:
       'A React app for creating and customizing resumes with a clean, approachable editing experience.',
     tags: ['React', 'JavaScript', 'Bootstrap'],
@@ -112,7 +114,6 @@ const projects = [
   {
     name: 'password-manager',
     title: 'Password Manager',
-    imagePath: 'assets/projects/password-manager.png',
     description:
       'A focused password-management project built with a modern JavaScript frontend.',
     tags: ['JavaScript', 'Password Management'],
@@ -122,16 +123,32 @@ const projects = [
   {
     name: 'Portfolio',
     title: 'Portfolio Website',
-    imagePath: 'assets/projects/portfolio.png',
+    image: portfolioImage,
     description:
       'An earlier personal portfolio built with a responsive interface and custom styling.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     href: 'https://github.com/Naitik-Dholakiya/Portfolio',
     motif: 'portfolio',
   },
+  {
+    name: 'krivaya-clothing',
+    title: 'Krivaya Clothing',
+    image: krivayaClothingImage,
+    description:
+      'A private e-commerce platform for clothing, built with a modern storefront and a seamless shopping experience.',
+    tags: ['Laravel', 'Tailwind CSS', 'MySQL'],
+    href: null,
+    motif: 'shop',
+  },
 ];
 
 const experience = [
+  {
+    period: 'Aug 2026 — Present',
+    role: 'PHP Full-Stack Developer',
+    organization: 'OneTouchGrade',
+    description:'Developing and maintaining a comprehensive ERP system using PHP, Laravel, and MySQL, focusing on responsive design, database management, and collaborative workflows.',
+  },
   {
     period: 'May 2024 — Apr 2025',
     role: 'Software Development Intern · Laravel',
@@ -262,21 +279,6 @@ function SectionHeading({ eyebrow, title, description, number }) {
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = window.localStorage.getItem('portfolio-theme');
-    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
-    return window.matchMedia('(prefers-color-scheme: light)').matches
-      ? 'light'
-      : 'dark';
-  });
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#101c2b' : '#f2f8f8');
-    window.localStorage.setItem('portfolio-theme', theme);
-  }, [theme]);
 
   return (
     <div className="min-h-screen overflow-x-clip bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-ink-950 dark:text-slate-50">
@@ -330,22 +332,7 @@ function Home() {
               </a>
             </div>
 
-            <button
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-slate-900/10 bg-white px-3 text-sm text-slate-800 transition-colors hover:border-teal-700 hover:text-teal-800 dark:border-white/15 dark:bg-ink-900 dark:text-slate-100 dark:hover:border-teal-300 dark:hover:text-teal-200"
-              type="button"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              aria-pressed={theme === 'light'}
-              onClick={() =>
-                setTheme((currentTheme) =>
-                  currentTheme === 'dark' ? 'light' : 'dark',
-                )
-              }
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              <span className="hidden sm:inline">
-                {theme === 'dark' ? 'Light' : 'Dark'}
-              </span>
-            </button>
+            <ThemeToggle />
 
             <button
               className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-900/10 bg-white dark:border-white/15 dark:bg-ink-900 md:hidden"
@@ -610,7 +597,7 @@ function Home() {
                 <span className="text-sky-700 dark:text-sky-300">put into the world.</span>
               </>
             }
-            description="All six public project repositories, ordered by scope and technical novelty."
+            description="A selection of public projects and private client work, ordered by scope and technical novelty."
           />
 
           <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2">
@@ -628,13 +615,14 @@ function Home() {
                   <div
                     className={`relative grid h-56 place-items-center overflow-hidden ${visual.surface} sm:h-64 lg:h-72`}
                   >
-                    <img
-                      className="absolute inset-0 h-full w-full object-cover"
-                      src={assetUrl(project.imagePath)}
-                      alt={`${project.title} project preview`}
-                      loading="lazy"
-                      onError={(event) => event.currentTarget.remove()}
-                    />
+                    {project.image && (
+                      <img
+                        className="absolute inset-0 z-10 h-full w-full object-cover"
+                        src={project.image}
+                        alt={`${project.title} project screenshot`}
+                        loading="lazy"
+                      />
+                    )}
                     <div className="pointer-events-none absolute inset-0 bg-slate-950/10" />
                     <span className="absolute left-4 top-4 z-10 text-xs tracking-widest text-white/80">
                       {(index + 1).toString().padStart(2, '0')}
@@ -646,29 +634,46 @@ function Home() {
                     <span className="absolute bottom-4 right-5 text-[11px] tracking-[0.14em] text-white/75">
                       {visual.label}
                     </span>
-                    <a
-                      className="absolute bottom-4 left-4 grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-slate-950/60 text-white transition hover:bg-teal-300 hover:text-ink-950"
-                      href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`Open ${project.title} on GitHub`}
-                    >
-                      <ArrowUpRight size={19} />
-                    </a>
+                    {project.href ? (
+                      <a
+                        className="absolute bottom-4 left-4 z-20 grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-slate-950/60 text-white transition hover:bg-teal-300 hover:text-ink-950"
+                        href={project.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Open ${project.title} on GitHub`}
+                      >
+                        <ArrowUpRight size={19} />
+                      </a>
+                    ) : (
+                      <span
+                        className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-full border border-white/30 bg-slate-950/70 px-3 py-2 text-xs font-medium text-white"
+                        aria-label="Private project; source link unavailable"
+                      >
+                        <LockKeyhole size={14} />
+                        Private
+                      </span>
+                    )}
                   </div>
                   <div className="p-4 sm:p-6">
                     <div className="flex flex-wrap items-start justify-between gap-2 sm:gap-3">
                       <h3 className="text-xl font-semibold tracking-tight">
                         {project.title}
                       </h3>
-                      <a
-                        className="inline-flex items-center gap-1 text-sm font-medium text-sky-800 dark:text-sky-200"
-                        href={project.href}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        View project <ArrowUpRight size={15} />
-                      </a>
+                      {project.href ? (
+                        <a
+                          className="inline-flex items-center gap-1 text-sm font-medium text-sky-800 dark:text-sky-200"
+                          href={project.href}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          View project <ArrowUpRight size={15} />
+                        </a>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+                          <LockKeyhole size={14} />
+                          Private project
+                        </span>
+                      )}
                     </div>
                     <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
                       {project.description}

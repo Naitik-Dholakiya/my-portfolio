@@ -8,29 +8,24 @@ export default function Footer() {
 
         <div className="flex space-x-5 mt-4 md:mt-0">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/Naitik-Dholakiya"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-yellow-400 transition"
             title="GitHub"
+            aria-label="GitHub"
           >
             <i className="fab fa-github text-xl"></i>
           </a>
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/naitik-dholakiya/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-yellow-400 transition"
             title="LinkedIn"
+            aria-label="LinkedIn"
           >
             <i className="fab fa-linkedin text-xl"></i>
-          </a>
-          <a
-            href="mailto:your@email.com"
-            className="hover:text-yellow-400 transition"
-            title="Email"
-          >
-            <i className="fas fa-envelope text-xl"></i>
           </a>
         </div>
       </div>

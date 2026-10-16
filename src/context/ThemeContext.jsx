@@ -1,25 +1,28 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { ThemeContext } from "./theme-context.js";
 
-export const ThemeContext = createContext();
+function getInitialTheme() {
+  const savedTheme = window.localStorage.getItem("portfolio-theme");
+  if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("dark");
+  return window.matchMedia("(prefers-color-scheme: light)").matches
+    ? "light"
+    : "dark";
+}
+
+export default function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", theme === "dark" ? "#101c2b" : "#f2f8f8");
+    window.localStorage.setItem("portfolio-theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
   };
 
   return (
@@ -27,5 +30,4 @@ export const ThemeProvider = ({ children }) => {
       {children}
     </ThemeContext.Provider>
   );
-};
-export default ThemeProvider;
+}

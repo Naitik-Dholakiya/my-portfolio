@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -9,8 +8,7 @@ export default function Navbar() {
   const links = [
     { name: "Home", to: "home" },
     { name: "About Me", to: "about" },
-    { name: "My Projects", to: "projects" },
-    { name: "My Blogs", to: "blogs" },
+    { name: "My Projects", to: "work" },
     { name: "Contact Me", to: "contact" },
   ];
 
