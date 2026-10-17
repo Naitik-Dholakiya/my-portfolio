@@ -404,7 +404,7 @@ function Home() {
                 href={assetUrl('assets/Naitik-Resume.pdf')}
                 download
               >
-                <Download size={17} /> Download résumé
+                <Download size={17} /> Download resume
               </a>
             </MotionDiv>
 
