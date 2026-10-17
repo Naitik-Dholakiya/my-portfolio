@@ -81,6 +81,7 @@ const projects = [
       'A Laravel billing and inventory system for managing customers, suppliers, products, invoices, stock, and sales insights.',
     tags: ['Laravel', 'PHP', 'MySQL', 'PDF Export'],
     href: 'https://github.com/Naitik-Dholakiya/bill-generator',
+    link: 'https://vyapar.infinityfree.io/',
     motif: 'invoice',
   },
   {
@@ -128,6 +129,7 @@ const projects = [
       'An earlier personal portfolio built with a responsive interface and custom styling.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     href: 'https://github.com/Naitik-Dholakiya/Portfolio',
+    link: 'https://naitik-dholakiya.github.io/my-portfolio/',
     motif: 'portfolio',
   },
   {
@@ -634,46 +636,71 @@ function Home() {
                     <span className="absolute bottom-4 right-5 text-[11px] tracking-[0.14em] text-white/75">
                       {visual.label}
                     </span>
-                    {project.href ? (
-                      <a
-                        className="absolute bottom-4 left-4 z-20 grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-slate-950/60 text-white transition hover:bg-teal-300 hover:text-ink-950"
-                        href={project.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Open ${project.title} on GitHub`}
-                      >
-                        <ArrowUpRight size={19} />
-                      </a>
-                    ) : (
-                      <span
-                        className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-full border border-white/30 bg-slate-950/70 px-3 py-2 text-xs font-medium text-white"
-                        aria-label="Private project; source link unavailable"
-                      >
-                        <LockKeyhole size={14} />
-                        Private
-                      </span>
-                    )}
+                    <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
+                      {project.href ? (
+                        <a
+                          className="grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-slate-950/60 text-white transition hover:bg-teal-300 hover:text-ink-950"
+                          href={project.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Open ${project.title} on GitHub`}
+                        >
+                          <ArrowUpRight size={19} />
+                        </a>
+                      ) : (
+                        <span
+                          className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-slate-950/70 px-3 py-2 text-xs font-medium text-white"
+                          aria-label="Private project; source link unavailable"
+                        >
+                          <LockKeyhole size={14} />
+                          Private
+                        </span>
+                      )}
+                      {project.link && (
+                        <a
+                          className="grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-slate-950/60 text-white transition hover:bg-teal-300 hover:text-ink-950"
+                          href={project.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Open ${project.title} live demo`}
+                        >
+                          <ArrowUpRight size={19} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <div className="p-4 sm:p-6">
                     <div className="flex flex-wrap items-start justify-between gap-2 sm:gap-3">
                       <h3 className="text-xl font-semibold tracking-tight">
                         {project.title}
                       </h3>
-                      {project.href ? (
-                        <a
-                          className="inline-flex items-center gap-1 text-sm font-medium text-sky-800 dark:text-sky-200"
-                          href={project.href}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          View project <ArrowUpRight size={15} />
-                        </a>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 text-sm font-medium text-slate-500 dark:text-slate-400">
-                          <LockKeyhole size={14} />
-                          Private project
-                        </span>
-                      )}
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        {project.href ? (
+                          <a
+                            className="inline-flex items-center gap-1 text-sm font-medium text-sky-800 dark:text-sky-200"
+                            href={project.href}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            View project <ArrowUpRight size={15} />
+                          </a>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+                            <LockKeyhole size={14} />
+                            Private project
+                          </span>
+                        )}
+                        {project.link && (
+                          <a
+                            className="inline-flex items-center gap-1 text-sm font-medium text-teal-800 dark:text-teal-200"
+                            href={project.link}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Live demo <ArrowUpRight size={15} />
+                          </a>
+                        )}
+                      </div>
                     </div>
                     <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
                       {project.description}
