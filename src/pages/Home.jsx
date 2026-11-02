@@ -1,9 +1,15 @@
 import { createElement, useState } from 'react';
-import { motion } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from 'framer-motion';
 import {
   ArrowDown,
   ArrowDownRight,
   ArrowRight,
+  ArrowUp,
   ArrowUpRight,
   Download,
   Layers3,
@@ -279,11 +285,54 @@ function SectionHeading({ eyebrow, title, description, number }) {
   );
 }
 
+function ScrollControls() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setShowScrollTop(latest > 400);
+  });
+
+  return (
+    <>
+      <motion.div
+        aria-hidden="true"
+        className="fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-teal-600 dark:bg-teal-300"
+        style={{ scaleX: scrollYProgress }}
+      />
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            aria-label="Scroll to top"
+            className="fixed bottom-5 right-5 z-40 grid h-11 w-11 place-items-center rounded-full border border-slate-900/10 bg-white text-slate-800 shadow-lg transition-colors hover:bg-teal-700 hover:text-white dark:border-white/15 dark:bg-ink-800 dark:text-slate-100 dark:hover:bg-teal-300 dark:hover:text-ink-950"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.2 }}
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+                  .matches
+                  ? 'auto'
+                  : 'smooth',
+              })
+            }
+          >
+            <ArrowUp size={19} />
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen overflow-x-clip bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-ink-950 dark:text-slate-50">
+      <ScrollControls />
       <a
         className="fixed left-3 top-3 z-[100] -translate-y-20 rounded-lg bg-teal-700 px-4 py-3 font-semibold text-white focus:translate-y-0 dark:bg-teal-300 dark:text-ink-950"
         href="#main"
@@ -453,8 +502,11 @@ function Home() {
             <div className="relative -z-10 h-[min(90vw,450px)] w-[min(80vw,400px)] overflow-hidden rounded-t-[48%] rounded-b-xl border border-teal-700/25 bg-teal-100 shadow-[22px_22px_0_rgba(8,127,128,0.1)] dark:border-teal-300/25 dark:bg-ink-800 dark:shadow-[22px_22px_0_rgba(112,232,218,0.1)]">
               <img
                 className="h-full w-full object-cover object-[center_28%]"
-                src={assetUrl('assets/Hero.jpg')}
+                src={assetUrl('assets/hero-optimized.jpg')}
                 alt=""
+                width="1080"
+                height="1440"
+                decoding="async"
                 fetchPriority="high"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" />
@@ -623,6 +675,7 @@ function Home() {
                         src={project.image}
                         alt={`${project.title} project screenshot`}
                         loading="lazy"
+                        decoding="async"
                       />
                     )}
                     <div className="pointer-events-none absolute inset-0 bg-slate-950/10" />
@@ -792,6 +845,7 @@ function Home() {
                         src={certificate.image}
                         alt=""
                         loading="lazy"
+                        decoding="async"
                       />
                       <span className="min-w-0 flex-1">
                         <strong className="block truncate text-sm font-medium">

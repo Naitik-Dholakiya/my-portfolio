@@ -12,3 +12,9 @@
     @apply min-w-[320px] bg-slate-50 font-sans text-slate-900 antialiased dark:bg-ink-950 dark:text-slate-50;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
